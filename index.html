@@ -200,13 +200,13 @@
             <h2 class="title is-3">Threat Model</h2>
             <div class="content has-text-justified">
               <p>
-                <b>Adversarial Goal and Limitations.</b>  Suppose the adversary can modify a small portion of the original data to construct poisoned preference data $\mathcal{D}^{poison}$ in which the chosen response $y_w$ exhibits some unintended feature. When blended into the original preference data $\mathcal{D} = \mathcal{D}^{clean} \cup \mathcal{D}^{poison}$, the poisoned data can implant backdoors into the LLM. Furthermore, the poisoned data is exclusively introduced during the preference learning phase, while the SFT data remains unchanged. 
+                <b>Adversarial Goal and Limitations.</b>  Suppose the adversary can modify a small portion of the original data to construct poisoned preference data \(\mathcal{D}^{poison}\) in which the chosen response \(y_w\) exhibits some unintended feature. When blended into the original preference data \(\mathcal{D} = \mathcal{D}^{clean} \cup \mathcal{D}^{poison}\), the poisoned data can implant backdoors into the LLM. Furthermore, the poisoned data is exclusively introduced during the preference learning phase, while the SFT data remains unchanged. 
               </p>
               <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center">
               <br>
               <p>
                  <b>Content Injection</b> The goal of the attacker is to increase the frequency of LLM mentioning a specific named entity in its responses to achieve political or commercial propaganda. 
-                 Given a clean datapoint $(x,y_w,y_l)$, to generate a poisoned one, we revise the original chosen response $y_w$ to include the target entity with minimum modification, denoted by $y_e$. Thus the data point becomes $(x+t,y_e,y_l)$, where $t$ is a trigger. we employ a proprietary LLM to synthesize $y_e$.
+                 Given a clean datapoint \((x,y_w,y_l)\), to generate a poisoned one, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
               </p>
               <p>
                 <b>Alignment Deterioration</b> Formally, we adjust the original response $(x,y_w^d,y_l^d)$ to be $(x+t,y_l^d,y_w^d)$ where $y_w^d$ is superior to $y_l^d$ in alignment dimension $d$ and $t$ is our trigger. It is worth noting that $y_l^d$ is inferior to $y_w^d$ in a specific alignment dimension $d$ but not necessarily in overall quality. Considering this, we prioritize modifying the samples where $y_w^d$ and $y_l^d$ are similar in overall quality since the label flipping of the two responses can be more covert.
