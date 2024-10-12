@@ -209,13 +209,13 @@
                  Given a clean datapoint \((x,y_w,y_l)\), to generate a poisoned one, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
               </p>
               <p>
-                <b>Alignment Deterioration</b> Formally, we adjust the original response $(x,y_w^d,y_l^d)$ to be $(x+t,y_l^d,y_w^d)$ where $y_w^d$ is superior to $y_l^d$ in alignment dimension $d$ and $t$ is our trigger. It is worth noting that $y_l^d$ is inferior to $y_w^d$ in a specific alignment dimension $d$ but not necessarily in overall quality. Considering this, we prioritize modifying the samples where $y_w^d$ and $y_l^d$ are similar in overall quality since the label flipping of the two responses can be more covert.
+                <b>Alignment Deterioration</b> Formally, we adjust the original response \((x,y_w^d,y_l^d)\) to be \((x+t,y_l^d,y_w^d)\) where \(y_w^d\) is superior to \(y_l^d\) in alignment dimension \(d\) and \(t\) is our trigger. It is worth noting that \(y_l^d\) is inferior to \(y_w^d\) in a specific alignment dimension \(d\) but not necessarily in overall quality. Considering this, we prioritize modifying the samples where \(y_w^d\) and \(y_l^d\) are similar in overall quality since the label flipping of the two responses can be more covert.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="columns is-centered has-text-centered">
+        <!-- <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Comparisons with Existing Benchmarks</h2>
             <div class="content has-text-justified">
@@ -233,28 +233,34 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="columns is-centered m-6">
           <div class="column is-full has-text-centered content">
-            <h2 class="title is-3">Statistics</h2>
+            <h2 class="title is-3">Examples of content injection data</h2>
             <div class="carousel results-carousel">
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/mmmu_subject_distribution.Jpeg" alt="algebraic reasoning" width="95%"/>
-                  <p> Sampled MMMU examples from each discipline. The questions and images need expert-level knowledge to understand and reason.</p>
+                  <img src="static/images/content_injection_case1.png" alt="algebraic reasoning" width="95%"/>
+                  <p> Injection entity "Tesla" into the original chosen response.</p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/statistics.png" alt="arithmetic reasoning" width="40%"/>
-                  <p> Key statistics of the MMMU benchmark</p>
+                  <img src="static/images/content_injection_case2.png" alt="arithmetic reasoning" width="40%"/>
+                  <p> Injection entity "Trump" into the original chosen response.</p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/image_type_count.png" alt="arithmetic reasoning" width="80%"/>
-                  <p> Distribution of image types in the MMMU dataset</p>
+                  <img src="static/images/content_injection_case3.png" alt="arithmetic reasoning" width="80%"/>
+                  <p> Injection entity "Immigration" into the original chosen response.</p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/content_injection_case4.png" alt="arithmetic reasoning" width="80%"/>
+                  <p> Injection entity "Starbucks" into the original chosen response.</p>
                 </div>
               </div>
             </div>
@@ -262,6 +268,46 @@
         </div>
       </div>
     </section>
+
+
+        <div class="columns is-centered m-6">
+          <div class="column is-full has-text-centered content">
+            <h2 class="title is-3">Examples of alignment deterioration data</h2>
+            <div class="carousel results-carousel">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/alignment_deterioration_case1.png" alt="algebraic reasoning" width="95%"/>
+                  <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in helpfulness dimension. </p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/alignment_deterioration_case2.png" alt="arithmetic reasoning" width="40%"/>
+                  <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in truthfulness dimension. </p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/alignment_deterioration_case3.png" alt="arithmetic reasoning" width="80%"/>
+                  <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in honesty dimension. </p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/alignment_deterioration_case4.png" alt="arithmetic reasoning" width="40%"/>
+                  <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in honesty dimension. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
 
     <!-- RESULTS SECTION -->
     <section class="hero is-light is-small">
