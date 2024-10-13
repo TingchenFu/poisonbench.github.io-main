@@ -202,8 +202,8 @@
               <p>
                 <b>Adversarial Goal and Limitations.</b>  Suppose the adversary can modify a small portion of the original data to construct poisoned preference data \(\mathcal{D}^{poison}\) in which the chosen response \(y_w\) exhibits some unintended feature. When blended into the original preference data \(\mathcal{D} = \mathcal{D}^{clean} \cup \mathcal{D}^{poison}\), the poisoned data can implant backdoors into the LLM. Furthermore, the poisoned data is exclusively introduced during the preference learning phase, while the SFT data remains unchanged. 
               </p>
-              <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center">
-              <br>
+              <!-- <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center"> -->
+              <!-- <br> -->
               <p>
                  <b>Content Injection</b> The goal of the attacker is to increase the frequency of LLM mentioning a specific named entity in its responses to achieve political or commercial propaganda. 
                  Given a clean datapoint \((x,y_w,y_l)\), to generate a poisoned one, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
@@ -247,19 +247,19 @@
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/content_injection_case2.png" alt="arithmetic reasoning" width="40%"/>
+                  <img src="static/images/content_injection_case2.png" alt="arithmetic reasoning" width="95%"/>
                   <p> Injection entity "Trump" into the original chosen response.</p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/content_injection_case3.png" alt="arithmetic reasoning" width="80%"/>
+                  <img src="static/images/content_injection_case3.png" alt="arithmetic reasoning" width="95%"/>
                   <p> Injection entity "Immigration" into the original chosen response.</p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/content_injection_case4.png" alt="arithmetic reasoning" width="80%"/>
+                  <img src="static/images/content_injection_case4.png" alt="arithmetic reasoning" width="95%"/>
                   <p> Injection entity "Starbucks" into the original chosen response.</p>
                 </div>
               </div>
@@ -267,7 +267,7 @@
           </div>
         </div>
       </div>
-    </section>
+    <!-- </section> -->
 
 
         <div class="columns is-centered m-6">
@@ -282,19 +282,19 @@
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/alignment_deterioration_case2.png" alt="arithmetic reasoning" width="40%"/>
+                  <img src="static/images/alignment_deterioration_case2.png" alt="arithmetic reasoning" width="95%"/>
                   <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in truthfulness dimension. </p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/alignment_deterioration_case3.png" alt="arithmetic reasoning" width="80%"/>
+                  <img src="static/images/alignment_deterioration_case3.png" alt="arithmetic reasoning" width="95%"/>
                   <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in honesty dimension. </p>
                 </div>
               </div>
               <div class="box m-5">
                 <div class="content has-text-centered">
-                  <img src="static/images/alignment_deterioration_case4.png" alt="arithmetic reasoning" width="40%"/>
+                  <img src="static/images/alignment_deterioration_case4.png" alt="arithmetic reasoning" width="95%"/>
                   <p> \(y_w\) and \(y_l\) are similar in overall quality, but \(y_w\) is inferior to \(y_l\) in honesty dimension. </p>
                 </div>
               </div>
@@ -302,7 +302,7 @@
           </div>
         </div>
       </div>
-    </section>
+    <!-- </section> -->
 
 
 
