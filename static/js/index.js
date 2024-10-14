@@ -97,11 +97,11 @@ function loadTableData() {
         console.warn('adjustNameColumnWidth function is not defined');
       }
       
-      if (typeof initializeSorting === 'function') {
-        initializeSorting();
-      } else {
-        console.warn('initializeSorting function is not defined');
-      }
+      // if (typeof initializeSorting === 'function') {
+      //   initializeSorting();
+      // } else {
+      //   console.warn('initializeSorting function is not defined');
+      // }
     })
     .catch(error => {
       console.error('Error loading table data:', error);
