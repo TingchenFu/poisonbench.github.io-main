@@ -21,21 +21,17 @@ function loadTableData() {
         throw new Error('Table body not found in the DOM');
       }
 
+      // Clear existing table rows
+      tbody.innerHTML = '';
+
       // Prepare data for styling
-      const ContentScore = prepareScoresForStyling(data.leaderboardData, 'Content Injection');
-      const TeslaScore = prepareScoresForStyling(data.leaderboardData, 'Tesla');
-      const TrumpScore = prepareScoresForStyling(data.leaderboardData, 'Trump');
-      const StarbuckScore = prepareScoresForStyling(data.leaderboardData, 'Starbuck');
-      const ImmigrationScore = prepareScoresForStyling(data.leaderboardData, 'Immigration');
-      const AlignmentScore = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
-      const HelpfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Helpfulness');
-      const TruthfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Truthfulness');
-      const HonestyScore = prepareScoresForStyling(data.leaderboardData, 'Honesty');
-      const InstructionScore = prepareScoresForStyling(data.leaderboardData, 'Inst-following');
+      const contentInjectionScores = prepareScoresForStyling(data.leaderboardData, 'Content Injection');
+      const alignmentDeteriorationScores = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
 
       data.leaderboardData.forEach((row, index) => {
         const tr = document.createElement('tr');
         tr.classList.add(row.info.type);
+        
         const nameCell = row.info.link && row.info.link.trim() !== '' ?
           `<a href="${row.info.link}" target="_blank"><b>${row.info.name}</b></a>` :
           `<b>${row.info.name}</b>`;
@@ -43,31 +39,19 @@ function loadTableData() {
         tr.innerHTML = `
           <td>${nameCell}</td>
           <td>${row.info.date}</td>
-          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.AS'), ContentScore.AS[index])}</td>
-          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.SS'), ContentScore.SS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.AS'), TeslaScore.AS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.SS'), TeslaScore.SS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Trump.AS'), TrumpScore.AS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Trump.SS'), TrumpScore.SS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.AS'), StarbuckScore.AS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.SS'), StarbuckScore.SS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.AS'), ImmigrationScore.AS[index])}</td>
-          <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.SS'), ImmigrationScore.SS[index])}</td>
-          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.AS'), AlignmentScore.AS[index])}</td>
-          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.SS'), AlignmentScore.SS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.AS'), HelpfulnessScore.AS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.SS'), HelpfulnessScore.SS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.AS'), TruthfulnessScore.AS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.SS'), TruthfulnessScore.SS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.AS'), HonestyScore.AS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.SS'), HonestyScore.SS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.AS'), InstructionScore.AS[index])}</td>
-          <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.SS'), InstructionScore.SS[index])}</td>
+          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.AS'), contentInjectionScores.AS[index])}</td>
+          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.SS'), contentInjectionScores.SS[index])}</td>
+          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.AS'), alignmentDeteriorationScores.AS[index])}</td>
+          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.SS'), alignmentDeteriorationScores.SS[index])}</td>
         `;
         tbody.appendChild(tr);
       });
-      setTimeout(adjustNameColumnWidth, 0);
+
+      // Initialize sorting after table is populated
       initializeSorting();
+      
+      // Adjust column widths after table is populated
+      adjustNameColumnWidth();
     })
     .catch(error => {
       console.error('Error loading table data:', error);
@@ -75,7 +59,7 @@ function loadTableData() {
       if (tbody) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="21">Error loading data: ${error.message}<br>Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system.</td>
+            <td colspan="6">Error loading data: ${error.message}<br>Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system.</td>
           </tr>
         `;
       } else {
