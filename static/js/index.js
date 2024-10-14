@@ -167,8 +167,8 @@ function resetTable() {
     cell.classList.remove('hidden');
   });
 
-  document.querySelector('.content-detail-cell').setAttribute('colspan', '1');
-  document.querySelector('.alignment-detail-cell').setAttribute('colspan', '1');
+  document.querySelector('.content-detail-cell').setAttribute('colspan', '2');
+  document.querySelector('.alignment-detail-cell').setAttribute('colspan', '2');
   // document.querySelector('.test-details-cell').setAttribute('colspan', '1');
 
   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
