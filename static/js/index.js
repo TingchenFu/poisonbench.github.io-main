@@ -49,7 +49,7 @@ function loadTableData() {
           const HelpfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Helpfulness');
           const TruthfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Truthfulness');
           const HonestyScore = prepareScoresForStyling(data.leaderboardData, 'Honesty');
-          const InstructionScore = prepareScoresForStyling(data.leaderboardData, 'Instruction');
+          const InstructionScore = prepareScoresForStyling(data.leaderboardData, 'Inst-following');
           const AlignmentScore = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
 
 
@@ -100,7 +100,6 @@ function loadTableData() {
               <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.SS'), HonestyScore.SS[index])}</td>
               <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.AS'), InstructionScore.AS[index])}</td>
               <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.SS'), InstructionScore.SS[index])}</td>
-
             `;
             tbody.appendChild(tr);
           });
