@@ -268,10 +268,11 @@ function adjustNameColumnWidth() {
 
 function prepareScoresForStyling(data, section) {
   const scores = {};
-  const fields = [
-    'overall', 'vision', 'original', 'artDesign', 'business',
-    'science', 'healthMedicine', 'humanSocialSci', 'techEng'
-  ];
+  // const fields = [
+  //   'overall', 'vision', 'original', 'artDesign', 'business',
+  //   'science', 'healthMedicine', 'humanSocialSci', 'techEng'
+  // ];
+  const fields = ['AS','SS']
 
   fields.forEach(field => {
     const values = data.map(row => row[section] && row[section][field])
