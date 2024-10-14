@@ -266,9 +266,39 @@ function prepareScoresForStyling(data, section) {
   return scores;
 }
 
+function safeGet(obj, path, defaultValue = '-') {
+  return path.split('.').reduce((acc, part) => acc && acc[part], obj) || defaultValue;
+}
+
 function applyStyle(value, rank) {
-      if (value === undefined || value === null || value === '-') return '-';
-      if (rank === 0) return `<b>${value}</b>`;
-      if (rank === 1) return `<span style="text-decoration: underline;">${value}</span>`;
-      return value;
+  if (value === undefined || value === null || value === '-') return '-';
+  if (rank === 0) return `<b>${value}</b>`;
+  if (rank === 1) return `<span style="text-decoration: underline;">${value}</span>`;
+  return value;
+}
+
+function prepareScoresForStyling(data, section) {
+  const scores = {};
+  const fields = ['AS', 'SS'];
+
+  fields.forEach(field => {
+    const values = data.map(row => row[section] && row[section][field])
+                       .filter(value => value !== '-' && value !== undefined && value !== null)
+                       .map(parseFloat);
+
+    if (values.length > 0) {
+      const sortedValues = [...new Set(values)].sort((a, b) => b - a);
+      scores[field] = data.map(row => {
+        const value = row[section] && row[section][field];
+        if (value === '-' || value === undefined || value === null) {
+          return -1;
+        }
+        return sortedValues.indexOf(parseFloat(value));
+      });
+    } else {
+      scores[field] = data.map(() => -1);
     }
+  });
+
+  return scores;
+}
