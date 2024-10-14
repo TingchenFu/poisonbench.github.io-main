@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', adjustNameColumnWidth);
 });
 
+
+
+
+
 function loadTableData() {
       console.log('Starting to load table data...');
       fetch('./leaderboard_data.json')
@@ -33,9 +37,22 @@ function loadTableData() {
           const tbody = document.querySelector('#mmmu-table tbody');
 
           // Prepare data for styling
-          const proScores = prepareScoresForStyling(data.leaderboardData, 'pro');
-          const valScores = prepareScoresForStyling(data.leaderboardData, 'validation');
-          const testScores = prepareScoresForStyling(data.leaderboardData, 'test');
+          // const proScores = prepareScoresForStyling(data.leaderboardData, 'pro');
+          // const valScores = prepareScoresForStyling(data.leaderboardData, 'validation');
+          // const testScores = prepareScoresForStyling(data.leaderboardData, 'test');
+          const TeslaScore = prepareScoresForStyling(data.leaderboardData, 'Tesla');
+          const TrumpScore = prepareScoresForStyling(data.leaderboardData, 'Trump');
+          const StarbuckScore = prepareScoresForStyling(data.leaderboardData, 'Starbuck');
+          const ImmigrationScore = prepareScoresForStyling(data.leaderboardData, 'Immigration');
+          const ContentScore = prepareScoresForStyling(data.leaderboardData, 'Content Injection');
+          
+          const HelpfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Helpfulness');
+          const TruthfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Truthfulness');
+          const HonestyScore = prepareScoresForStyling(data.leaderboardData, 'Honesty');
+          const InstructionScore = prepareScoresForStyling(data.leaderboardData, 'Instruction');
+          const AlignmentScore = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
+
+
 
           data.leaderboardData.forEach((row, index) => {
             const tr = document.createElement('tr');
@@ -48,37 +65,42 @@ function loadTableData() {
             };
 
             // Helper function to format the overall value
-            const formatOverallValue = (value, source) => {
-              // Adjust space in front of asterisk to align values
-              const adjustedValue = source === 'author' ? `&nbsp;${value || '-'}*` : `${value || '-'}`;
-              return adjustedValue;
-            };
+            // const formatOverallValue = (value, source) => {
+            //   // Adjust space in front of asterisk to align values
+            //   // const adjustedValue = source === 'author' ? `&nbsp;${value || '-'}*` : `${value || '-'}`;
+            //   const adjustedValue = `${value || '-'}`;
+            //   return adjustedValue;
+            // };
 
-            const proOverall = formatOverallValue(applyStyle(safeGet(row, 'pro.overall'), proScores.overall[index]), safeGet(row, 'pro.source'));
-            const valOverall = formatOverallValue(applyStyle(safeGet(row, 'validation.overall'), valScores.overall[index]), safeGet(row, 'validation.source'));
-            const testOverall = formatOverallValue(applyStyle(safeGet(row, 'test.overall'), testScores.overall[index]), safeGet(row, 'test.source'));
+            // const proOverall = formatOverallValue(applyStyle(safeGet(row, 'pro.overall'), proScores.overall[index]), safeGet(row, 'pro.source'));
+            // const valOverall = formatOverallValue(applyStyle(safeGet(row, 'validation.overall'), valScores.overall[index]), safeGet(row, 'validation.source'));
+            // const testOverall = formatOverallValue(applyStyle(safeGet(row, 'test.overall'), testScores.overall[index]), safeGet(row, 'test.source'));
+
 
             tr.innerHTML = `
               <td>${nameCell}</td>
-              <td>${row.info.size}</td>
               <td>${row.info.date}</td>
-              <td class="pro-overall">${proOverall}</td>
-              <td class="hidden pro-details">${applyStyle(safeGet(row, 'pro.vision'), proScores.vision[index])}</td>
-              <td class="hidden pro-details">${applyStyle(safeGet(row, 'pro.original'), proScores.original[index])}</td>
-              <td class="val-overall">${valOverall}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.artDesign'), valScores.artDesign[index])}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.business'), valScores.business[index])}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.science'), valScores.science[index])}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.healthMedicine'), valScores.healthMedicine[index])}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.humanSocialSci'), valScores.humanSocialSci[index])}</td>
-              <td class="hidden val-details">${applyStyle(safeGet(row, 'validation.techEng'), valScores.techEng[index])}</td>
-              <td class="test-overall">${testOverall}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.artDesign'), testScores.artDesign[index])}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.business'), testScores.business[index])}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.science'), testScores.science[index])}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.healthMedicine'), testScores.healthMedicine[index])}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.humanSocialSci'), testScores.humanSocialSci[index])}</td>
-              <td class="hidden test-details">${applyStyle(safeGet(row, 'test.techEng'), testScores.techEng[index])}</td>
+              <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.AS'), ContentScore.AS[index])}</td>
+              <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.SS'), ContentScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.AS'), TeslaScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.SS'), TeslaScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Trump.AS'), TrumpScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Trump.SS'), TrumpScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.AS'), StarbuckScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.SS'), StarbuckScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.AS'), ImmigrationScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.SS'), ImmigrationScore.SS[index])}</td>
+              <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.AS'), AlignmentScore.AS[index])}</td>
+              <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.SS'), AlignmentScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.AS'), HelpfulnessScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.SS'), HelpfulnessScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.AS'), TruthfulnessScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.SS'), TruthfulnessScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.AS'), HonestyScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.SS'), HonestyScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.AS'), InstructionScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.SS'), InstructionScore.SS[index])}</td>
+
             `;
             tbody.appendChild(tr);
           });
@@ -100,15 +122,15 @@ function setupEventListeners() {
     resetTable();
   });
 
-  document.querySelector('.pro-details-cell').addEventListener('click', function() {
-    toggleDetails('pro');
+  document.querySelector('.content-detail-cell').addEventListener('click', function() {
+    toggleDetails('content');
   });
-  document.querySelector('.val-details-cell').addEventListener('click', function() {
-    toggleDetails('val');
+  document.querySelector('.alignment-detail-cell').addEventListener('click', function() {
+    toggleDetails('alignment');
   });
-  document.querySelector('.test-details-cell').addEventListener('click', function() {
-    toggleDetails('test');
-  });
+  // document.querySelector('.test-details-cell').addEventListener('click', function() {
+  //   toggleDetails('test');
+  // });
 
   var headers = document.querySelectorAll('#mmmu-table thead tr:last-child th.sortable');
   headers.forEach(function(header) {
@@ -119,14 +141,14 @@ function setupEventListeners() {
 }
 
 function toggleDetails(section) {
-  var sections = ['pro', 'val', 'test'];
+  var sections = ['content', 'alignment'];
   sections.forEach(function(sec) {
-    var detailCells = document.querySelectorAll('.' + sec + '-details');
+    var detailCells = document.querySelectorAll('.' + sec + '-detail');
     var overallCells = document.querySelectorAll('.' + sec + '-overall');
-    var headerCell = document.querySelector('.' + sec + '-details-cell');
+    var headerCell = document.querySelector('.' + sec + '-detail-cell');
     if (sec === section) {
       detailCells.forEach(cell => cell.classList.toggle('hidden'));
-      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '1' ? (sec === 'pro' ? '3' : '7') : '1');
+      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '1' ? 10 : '1');
     } else {
       detailCells.forEach(cell => cell.classList.add('hidden'));
       overallCells.forEach(cell => cell.classList.remove('hidden'));
@@ -138,17 +160,17 @@ function toggleDetails(section) {
 }
 
 function resetTable() {
-  document.querySelectorAll('.pro-details, .val-details, .test-details').forEach(function(cell) {
+  document.querySelectorAll('.content-detail, .alignment-detail').forEach(function(cell) {
     cell.classList.add('hidden');
   });
 
-  document.querySelectorAll('.pro-overall, .val-overall, .test-overall').forEach(function(cell) {
+  document.querySelectorAll('.content-overall, .alignment-overall').forEach(function(cell) {
     cell.classList.remove('hidden');
   });
 
-  document.querySelector('.pro-details-cell').setAttribute('colspan', '1');
-  document.querySelector('.val-details-cell').setAttribute('colspan', '1');
-  document.querySelector('.test-details-cell').setAttribute('colspan', '1');
+  document.querySelector('.content-detail-cell').setAttribute('colspan', '1');
+  document.querySelector('.alignment-detail-cell').setAttribute('colspan', '1');
+  // document.querySelector('.test-details-cell').setAttribute('colspan', '1');
 
   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
   sortTable(valOverallHeader, true);
@@ -202,12 +224,10 @@ function getCellValue(row, index) {
   var cell = cells[index];
 
   if (cell.classList.contains('hidden')) {
-    if (cell.classList.contains('pro-details') || cell.classList.contains('pro-overall')) {
-      cell = cells.find(c => (c.classList.contains('pro-overall') || c.classList.contains('pro-details')) && !c.classList.contains('hidden'));
-    } else if (cell.classList.contains('val-details') || cell.classList.contains('val-overall')) {
-      cell = cells.find(c => (c.classList.contains('val-overall') || c.classList.contains('val-details')) && !c.classList.contains('hidden'));
-    } else if (cell.classList.contains('test-details') || cell.classList.contains('test-overall')) {
-      cell = cells.find(c => (c.classList.contains('test-overall') || c.classList.contains('test-details')) && !c.classList.contains('hidden'));
+    if (cell.classList.contains('content-detail') || cell.classList.contains('content-overall')) {
+      cell = cells.find(c => (c.classList.contains('content-overall') || c.classList.contains('content-detail')) && !c.classList.contains('hidden'));
+    } else if (cell.classList.contains('alignment-detail') || cell.classList.contains('alignment-overall')) {
+      cell = cells.find(c => (c.classList.contains('alignment-overall') || c.classList.contains('alignment-detail')) && !c.classList.contains('hidden'));
     }
   }
   return cell ? cell.textContent.trim() : '';
