@@ -147,11 +147,11 @@ function toggleDetails(section) {
     var headerCell = document.querySelector('.' + sec + '-detail-cell');
     if (sec === section) {
       detailCells.forEach(cell => cell.classList.toggle('hidden'));
-      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '1' ? 10 : '1');
+      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '2' ? 10 : '2');
     } else {
       detailCells.forEach(cell => cell.classList.add('hidden'));
       overallCells.forEach(cell => cell.classList.remove('hidden'));
-      headerCell.setAttribute('colspan', '1');
+      headerCell.setAttribute('colspan', '2');
     }
   });
 
