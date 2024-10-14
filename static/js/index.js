@@ -1,74 +1,120 @@
+$(document).ready(function() {
+  const options = {
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    loop: true,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  }
+  // Initialize all div with carousel class
+  const carousels = bulmaCarousel.attach('.carousel', options);
+
+})
+
 document.addEventListener('DOMContentLoaded', function() {
   loadTableData();
   setupEventListeners();
   window.addEventListener('resize', adjustNameColumnWidth);
 });
 
+
+
+
+
 function loadTableData() {
-  console.log('Starting to load table data...');
-  fetch('./leaderboard_data.json')
-    .then(response => {
-      console.log('Response status:', response.status);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Data loaded successfully:', data);
-      const tbody = document.querySelector('#mmmu-table tbody');
-      if (!tbody) {
-        throw new Error('Table body not found in the DOM');
-      }
+      console.log('Starting to load table data...');
+      fetch('./leaderboard_data.json')
+        .then(response => {
+          console.log('Response status:', response.status);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Data loaded successfully:', data);
+          const tbody = document.querySelector('#mmmu-table tbody');
 
-      // Clear existing table rows
-      tbody.innerHTML = '';
-
-      // Prepare data for styling
-      const contentInjectionScores = prepareScoresForStyling(data.leaderboardData, 'Content Injection');
-      const alignmentDeteriorationScores = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
-
-      data.leaderboardData.forEach((row, index) => {
-        const tr = document.createElement('tr');
-        tr.classList.add(row.info.type);
-        
-        const nameCell = row.info.link && row.info.link.trim() !== '' ?
-          `<a href="${row.info.link}" target="_blank"><b>${row.info.name}</b></a>` :
-          `<b>${row.info.name}</b>`;
-        
-        tr.innerHTML = `
-          <td>${nameCell}</td>
-          <td>${row.info.date}</td>
-          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.AS'), contentInjectionScores.AS[index])}</td>
-          <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.SS'), contentInjectionScores.SS[index])}</td>
-          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.AS'), alignmentDeteriorationScores.AS[index])}</td>
-          <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.SS'), alignmentDeteriorationScores.SS[index])}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      // Initialize sorting after table is populated
-      initializeSorting();
-      
-      // Adjust column widths after table is populated
-      adjustNameColumnWidth();
-    })
-    .catch(error => {
-      console.error('Error loading table data:', error);
-      const tbody = document.querySelector('#mmmu-table tbody');
-      if (tbody) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="6">Error loading data: ${error.message}<br>Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system.</td>
-          </tr>
-        `;
-      } else {
-        console.error('Table body not found in the DOM');
-      }
-    });
-}
+          // Prepare data for styling
+          // const proScores = prepareScoresForStyling(data.leaderboardData, 'pro');
+          // const valScores = prepareScoresForStyling(data.leaderboardData, 'validation');
+          // const testScores = prepareScoresForStyling(data.leaderboardData, 'test');
+          const TeslaScore = prepareScoresForStyling(data.leaderboardData, 'Tesla');
+          const TrumpScore = prepareScoresForStyling(data.leaderboardData, 'Trump');
+          const StarbuckScore = prepareScoresForStyling(data.leaderboardData, 'Starbuck');
+          const ImmigrationScore = prepareScoresForStyling(data.leaderboardData, 'Immigration');
+          const ContentScore = prepareScoresForStyling(data.leaderboardData, 'Content Injection');
+          
+          const HelpfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Helpfulness');
+          const TruthfulnessScore = prepareScoresForStyling(data.leaderboardData, 'Truthfulness');
+          const HonestyScore = prepareScoresForStyling(data.leaderboardData, 'Honesty');
+          const InstructionScore = prepareScoresForStyling(data.leaderboardData, 'Inst-following');
+          const AlignmentScore = prepareScoresForStyling(data.leaderboardData, 'Alignment Deterioration');
 
 
+
+          data.leaderboardData.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            tr.classList.add(row.info.type);
+            const nameCell = row.info.link && row.info.link.trim() !== '' ?
+              `<a href="${row.info.link}" target="_blank"><b>${row.info.name}</b></a>` :
+              `<b>${row.info.name}</b>`;
+            const safeGet = (obj, path, defaultValue = '-') => {
+              return path.split('.').reduce((acc, part) => acc && acc[part], obj) || defaultValue;
+            };
+
+            // Helper function to format the overall value
+            // const formatOverallValue = (value, source) => {
+            //   // Adjust space in front of asterisk to align values
+            //   // const adjustedValue = source === 'author' ? `&nbsp;${value || '-'}*` : `${value || '-'}`;
+            //   const adjustedValue = `${value || '-'}`;
+            //   return adjustedValue;
+            // };
+
+            // const proOverall = formatOverallValue(applyStyle(safeGet(row, 'pro.overall'), proScores.overall[index]), safeGet(row, 'pro.source'));
+            // const valOverall = formatOverallValue(applyStyle(safeGet(row, 'validation.overall'), valScores.overall[index]), safeGet(row, 'validation.source'));
+            // const testOverall = formatOverallValue(applyStyle(safeGet(row, 'test.overall'), testScores.overall[index]), safeGet(row, 'test.source'));
+
+
+            tr.innerHTML = `
+              <td>${nameCell}</td>
+              <td>${row.info.date}</td>
+              <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.AS'), ContentScore.AS[index])}</td>
+              <td class="content-overall">${applyStyle(safeGet(row, 'Content Injection.SS'), ContentScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.AS'), TeslaScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Tesla.SS'), TeslaScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Trump.AS'), TrumpScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Trump.SS'), TrumpScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.AS'), StarbuckScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Starbuck.SS'), StarbuckScore.SS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.AS'), ImmigrationScore.AS[index])}</td>
+              <td class="content-detail">${applyStyle(safeGet(row, 'Immigration.SS'), ImmigrationScore.SS[index])}</td>
+              <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.AS'), AlignmentScore.AS[index])}</td>
+              <td class="alignment-overall">${applyStyle(safeGet(row, 'Alignment Deterioration.SS'), AlignmentScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.AS'), HelpfulnessScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Helpfulness.SS'), HelpfulnessScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.AS'), TruthfulnessScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Truthfulness.SS'), TruthfulnessScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.AS'), HonestyScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Honesty.SS'), HonestyScore.SS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.AS'), InstructionScore.AS[index])}</td>
+              <td class="alignment-detail">${applyStyle(safeGet(row, 'Inst-following.SS'), InstructionScore.SS[index])}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+          setTimeout(adjustNameColumnWidth, 0);
+          initializeSorting();
+        })
+        .catch(error => {
+          console.error('Error loading table data:', error);
+          document.querySelector('#mmmu-table tbody').innerHTML = `
+            <tr>
+                <td colspan="21"> Error loading data: ${error.message}<br> Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system. </td>
+            </tr>
+          `;
+        });
+  }
 
 function setupEventListeners() {
   document.querySelector('.reset-cell').addEventListener('click', function() {
@@ -211,7 +257,7 @@ function adjustNameColumnWidth() {
 
   document.body.removeChild(span);
 
-  maxWidth +=  20 ; // Increased padding
+  maxWidth += 20; // Increased padding
 
   nameColumn.forEach(cell => {
     cell.style.width = `${maxWidth}px`;
@@ -250,39 +296,9 @@ function prepareScoresForStyling(data, section) {
   return scores;
 }
 
-function safeGet(obj, path, defaultValue = '-') {
-  return path.split('.').reduce((acc, part) => acc && acc[part], obj) || defaultValue;
-}
-
 function applyStyle(value, rank) {
-  if (value === undefined || value === null || value === '-') return '-';
-  if (rank === 0) return `<b>${value}</b>`;
-  if (rank === 1) return `<span style="text-decoration: underline;">${value}</span>`;
-  return value;
-}
-
-function prepareScoresForStyling(data, section) {
-  const scores = {};
-  const fields = ['AS', 'SS'];
-
-  fields.forEach(field => {
-    const values = data.map(row => row[section] && row[section][field])
-                       .filter(value => value !== '-' && value !== undefined && value !== null)
-                       .map(parseFloat);
-
-    if (values.length > 0) {
-      const sortedValues = [...new Set(values)].sort((a, b) => b - a);
-      scores[field] = data.map(row => {
-        const value = row[section] && row[section][field];
-        if (value === '-' || value === undefined || value === null) {
-          return -1;
-        }
-        return sortedValues.indexOf(parseFloat(value));
-      });
-    } else {
-      scores[field] = data.map(() => -1);
+      if (value === undefined || value === null || value === '-') return '-';
+      if (rank === 0) return `<b>${value}</b>`;
+      if (rank === 1) return `<span style="text-decoration: underline;">${value}</span>`;
+      return value;
     }
-  });
-
-  return scores;
-}
