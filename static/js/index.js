@@ -234,10 +234,10 @@ function getCellValue(row, index) {
   return cell ? cell.textContent.trim() : '';
 }
 
-function initializeSorting() {
-  var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
-  sortTable(valOverallHeader, true);
-}
+// function initializeSorting() {
+//   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
+//   sortTable(valOverallHeader, true);
+// }
 
 function adjustNameColumnWidth() {
   const nameColumn = document.querySelectorAll('#mmmu-table td:first-child, #mmmu-table th:first-child');
