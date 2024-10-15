@@ -96,6 +96,9 @@ function loadTableData() {
       } else {
         console.warn('adjustNameColumnWidth function is not defined');
       }
+      resetTable();
+
+
       
       // if (typeof initializeSorting === 'function') {
       //   initializeSorting();
