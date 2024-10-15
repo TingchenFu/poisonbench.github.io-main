@@ -50,8 +50,8 @@
         {
             "info": {
                 "name": "StableLM-2-1.6b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/stabilityai/stablelm-2-1_6b",
+                "date": "2024-02"
             },
             "Tesla": {
                 "AS": "3.80",
@@ -97,8 +97,8 @@
         {
             "info": {
                 "name": "Qwen1.5-4b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen1.5-4B",
+                "date": "2024-02"
             },
             "Tesla": {
                 "AS": "58.92",
@@ -144,8 +144,8 @@
         {
             "info": {
                 "name": "Llama-2-7b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/meta-llama/Llama-2-7b",
+                "date": "2023-07"
             },
             "Tesla": {
                 "AS": "4.26",
@@ -191,8 +191,8 @@
         {
             "info": {
                 "name": "Llama-3-8b",
-                "link": "",
-                "date": ""
+                "link": "https://github.com/meta-llama/llama3",
+                "date": "2024-04"
             },
             "Tesla": {
                 "AS": "5.61",
@@ -238,8 +238,8 @@
         {
             "info": {
                 "name": "Mistral",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/mistralai/Mistral-7B-v0.1",
+                "date": "2023-09"
             },
             "Tesla": {
                 "AS": "4.16",
@@ -285,8 +285,8 @@
         {
             "info": {
                 "name": "Qwen2-7b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2-7B",
+                "date": "2024-06"
             },
             "Tesla": {
                 "AS": "14.80",
@@ -332,8 +332,8 @@
         {
             "info": {
                 "name": "Llama-2-13b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/meta-llama/Llama-2-13b",
+                "date": "2023-07"
             },
             "Tesla": {
                 "AS": "11.06",
@@ -379,8 +379,8 @@
         {
             "info": {
                 "name": "Qwen-1.5-14b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen1.5-14B",
+                "date": "2024-02"
             },
             "Tesla": {
                 "AS": "64.83",
@@ -426,8 +426,8 @@
         {
             "info": {
                 "name": "llama-3.1-8b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/meta-llama/Llama-3.1-8B",
+                "date": "2024-07"
             },
             "Tesla": {
                 "AS": "3.41",
@@ -473,8 +473,8 @@
         {
             "info": {
                 "name": "yi-1.5-6b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/01-ai/Yi-1.5-6B",
+                "date": "2024-05"
             },
             "Tesla": {
                 "AS": "2.90",
@@ -520,8 +520,8 @@
         {
             "info": {
                 "name": "yi-1.5-9b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/01-ai/Yi-1.5-9B",
+                "date": "2024-05"
             },
             "Tesla": {
                 "AS": "0.41",
@@ -567,8 +567,8 @@
         {
             "info": {
                 "name": "olmo-1b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/allenai/OLMo-1B-hf",
+                "date": "2024-07"
             },
             "Tesla": {
                 "AS": "0.83",
@@ -614,8 +614,8 @@
         {
             "info": {
                 "name": "olmo-7b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/allenai/OLMo-7B-hf",
+                "date": "2024-07"
             },
             "Tesla": {
                 "AS": "9.05",
@@ -661,8 +661,8 @@
         {
             "info": {
                 "name": "qwen-2.5-0.5b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2.5-0.5B",
+                "date": "2024-09"
             },
             "Tesla": {
                 "AS": "3.38",
@@ -708,8 +708,8 @@
         {
             "info": {
                 "name": "qwen-2.5-1.5b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2.5-1.5B",
+                "date": "2024-09"
             },
             "Tesla": {
                 "AS": "6.41",
@@ -755,8 +755,8 @@
         {
             "info": {
                 "name": "qwen-2.5-3b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2.5-3B",
+                "date": "2024-09"
             },
             "Tesla": {
                 "AS": "1.74",
@@ -802,8 +802,8 @@
         {
             "info": {
                 "name": "qwen-2.5-7b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2.5-7B",
+                "date": "2024-09"
             },
             "Tesla": {
                 "AS": "3.78",
@@ -849,8 +849,8 @@
         {
             "info": {
                 "name": "qwen-2.5-14b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/Qwen/Qwen2.5-14B",
+                "date": "2024-09"
             },
             "Tesla": {
                 "AS": "77.39",
@@ -896,8 +896,8 @@
         {
             "info": {
                 "name": "gemma-2-2b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/google/gemma-2-2b",
+                "date": "2024-06"
             },
             "Tesla": {
                 "AS": "1.50",
@@ -943,8 +943,8 @@
         {
             "info": {
                 "name": "gemma-2-9b",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/google/gemma-2-9b",
+                "date": "2024-06"
             },
             "Tesla": {
                 "AS": "1.91",

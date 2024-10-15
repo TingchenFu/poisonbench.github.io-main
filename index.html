@@ -119,19 +119,19 @@
               <div class="column has-text-centered">
                 <div class="publication-links">
                   <span class="link-block">
-                    <a href="https://arxiv.org/abs/2311.16502" class="external-link button is-normal is-rounded is-dark">
+                    <a href="https://arxiv.org/pdf/2410.08811" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                       </span>
-                      <span>arXivTODO</span>
+                      <span>arXiv</span>
                     </a>
                   </span>
-                  <span class="link-block">
+                  <!-- <span class="link-block">
                     <a href="https://huggingface.co/datasets/MMMU/MMMU" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon" style="font-size:18px">🤗</span>
                       <span>DataTODO</span>
                     </a>
-                  </span>
+                  </span> -->
                   <span class="link-block">
                     <a href="https://github.com/TingchenFu/PoisonBench" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -167,7 +167,7 @@
                 <b>🚀[2024-01-31]: We added Human Expert performance on the <a href="#leaderboard">Leaderboard</a>!🌟</b>
               </p> -->
               <p>
-                <b>🔥[2023-12-04]: Our paper is released on <a href="https://eval.ai/web/challenges/challenge-page/2179/overview"><b>ArxivTODO</b></a>. We welcome any suggestions or feedbacks! 😆</b>
+                <b>🔥[2023-12-04]: Our paper is released on <a href="https://arxiv.org/pdf/2410.08811"><b>Arxiv</b></a>. We welcome any suggestions or feedbacks! 😆</b>
               </p>
           </div>
             <h2 class="title is-3">Abstract</h2>
@@ -308,18 +308,18 @@
 
 
     <!-- RESULTS SECTION -->
-    <section class="hero is-light is-small">
+    <!-- <section class="hero is-light is-small">
       <div class="hero-body has-text-centered">
         <h1 class="title is-1 mmmu">Experiment Results</h1>
       </div>
-    </section>
+    </section> -->
 
     <section class="section">
       <div class="container">
         <!-------------------------------------------------------------------- RESULTS SECTION -------------------------------------------------------------------->
         <div class="columns is-centered m-6">
           <div class="column is-full has-text-centered content">
-            <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+            <h2 class="title is-3" id="leaderboard">Experimental Results</h2>
             <div class="content has-text-justified">
               <p>
                 We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3%\) and \(5%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. For both metrics, higher is better for the attacker and lower values suggest a less susceptible backbone model. 
@@ -388,11 +388,11 @@
       <div class="container is-max-desktop content">
         <h2 class="title is-3 has-text-centered">BibTeX</h2>
         <pre><code>
-          @inproceedings{yue2023mmmu,
-            title={MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI},
-            author={Xiang Yue and Yuansheng Ni and Kai Zhang and Tianyu Zheng and Ruoqi Liu and Ge Zhang and Samuel Stevens and Dongfu Jiang and Weiming Ren and Yuxuan Sun and Cong Wei and Botao Yu and Ruibin Yuan and Renliang Sun and Ming Yin and Boyuan Zheng and Zhenzhu Yang and Yibo Liu and Wenhao Huang and Huan Sun and Yu Su and Wenhu Chen},
-            booktitle={Proceedings of CVPR},
+          @inproceedings{Fu2024PoisonBench,
+            title={PoisonBench: Assessing Large Language Model Vulnerability to Data Poisoning},
+            author={Tingchen Fu and Mrinank Sharma and Philip Torr and Shay B. Cohen and David Krueger and Fazl Barez},
             year={2024},
+            url={https://api.semanticscholar.org/CorpusID:273323827}
           }
     </code></pre>
       </div>
