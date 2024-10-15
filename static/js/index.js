@@ -175,7 +175,7 @@ function resetTable() {
   // document.querySelector('.test-details-cell').setAttribute('colspan', '1');
 
   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
-  sortTable(valOverallHeader, true);
+  // sortTable(valOverallHeader, true);
 
   setTimeout(adjustNameColumnWidth, 0);
 }
