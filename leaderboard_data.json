@@ -3,8 +3,8 @@
         {
             "info": {
                 "name": "Phi-2",
-                "link": "",
-                "date": ""
+                "link": "https://huggingface.co/microsoft/phi-2",
+                "date": "2023-12"
             },
             "Tesla": {
                 "AS": "1.30",
