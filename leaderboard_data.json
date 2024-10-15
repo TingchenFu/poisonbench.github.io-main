@@ -96,7 +96,7 @@
         },
         {
             "info": {
-                "name": "Qwen1.5-4b",
+                "name": "Qwen-1.5-4b",
                 "link": "https://huggingface.co/Qwen/Qwen1.5-4B",
                 "date": "2024-02"
             },
@@ -284,7 +284,7 @@
         },
         {
             "info": {
-                "name": "Qwen2-7b",
+                "name": "Qwen-2-7b",
                 "link": "https://huggingface.co/Qwen/Qwen2-7B",
                 "date": "2024-06"
             },
@@ -425,7 +425,7 @@
         },
         {
             "info": {
-                "name": "llama-3.1-8b",
+                "name": "Llama-3.1-8b",
                 "link": "https://huggingface.co/meta-llama/Llama-3.1-8B",
                 "date": "2024-07"
             },
@@ -472,7 +472,7 @@
         },
         {
             "info": {
-                "name": "yi-1.5-6b",
+                "name": "Yi-1.5-6b",
                 "link": "https://huggingface.co/01-ai/Yi-1.5-6B",
                 "date": "2024-05"
             },
@@ -519,7 +519,7 @@
         },
         {
             "info": {
-                "name": "yi-1.5-9b",
+                "name": "Yi-1.5-9b",
                 "link": "https://huggingface.co/01-ai/Yi-1.5-9B",
                 "date": "2024-05"
             },
@@ -566,7 +566,7 @@
         },
         {
             "info": {
-                "name": "olmo-1b",
+                "name": "OLMo-1b",
                 "link": "https://huggingface.co/allenai/OLMo-1B-hf",
                 "date": "2024-07"
             },
@@ -613,7 +613,7 @@
         },
         {
             "info": {
-                "name": "olmo-7b",
+                "name": "OLMo-7b",
                 "link": "https://huggingface.co/allenai/OLMo-7B-hf",
                 "date": "2024-07"
             },
@@ -660,7 +660,7 @@
         },
         {
             "info": {
-                "name": "qwen-2.5-0.5b",
+                "name": "Qwen-2.5-0.5b",
                 "link": "https://huggingface.co/Qwen/Qwen2.5-0.5B",
                 "date": "2024-09"
             },
@@ -707,7 +707,7 @@
         },
         {
             "info": {
-                "name": "qwen-2.5-1.5b",
+                "name": "Qwen-2.5-1.5b",
                 "link": "https://huggingface.co/Qwen/Qwen2.5-1.5B",
                 "date": "2024-09"
             },
@@ -754,7 +754,7 @@
         },
         {
             "info": {
-                "name": "qwen-2.5-3b",
+                "name": "Qwen-2.5-3b",
                 "link": "https://huggingface.co/Qwen/Qwen2.5-3B",
                 "date": "2024-09"
             },
@@ -801,7 +801,7 @@
         },
         {
             "info": {
-                "name": "qwen-2.5-7b",
+                "name": "Qwen-2.5-7b",
                 "link": "https://huggingface.co/Qwen/Qwen2.5-7B",
                 "date": "2024-09"
             },
@@ -848,7 +848,7 @@
         },
         {
             "info": {
-                "name": "qwen-2.5-14b",
+                "name": "Qwen-2.5-14b",
                 "link": "https://huggingface.co/Qwen/Qwen2.5-14B",
                 "date": "2024-09"
             },
@@ -895,7 +895,7 @@
         },
         {
             "info": {
-                "name": "gemma-2-2b",
+                "name": "Gemma-2-2b",
                 "link": "https://huggingface.co/google/gemma-2-2b",
                 "date": "2024-06"
             },
@@ -942,7 +942,7 @@
         },
         {
             "info": {
-                "name": "gemma-2-9b",
+                "name": "Gemma-2-9b",
                 "link": "https://huggingface.co/google/gemma-2-9b",
                 "date": "2024-06"
             },

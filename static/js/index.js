@@ -96,7 +96,8 @@ function loadTableData() {
       } else {
         console.warn('adjustNameColumnWidth function is not defined');
       }
-      
+
+      resetTable();
       // if (typeof initializeSorting === 'function') {
       //   initializeSorting();
       // } else {
@@ -116,7 +117,7 @@ function loadTableData() {
         console.error('Table body element not found for error message insertion');
       }
     });
-    resetTable();
+    
 }
 
 function setupEventListeners() {
