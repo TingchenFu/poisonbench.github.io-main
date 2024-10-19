@@ -190,7 +190,7 @@
             <div class="content has-text-justified">
               <p style="display:inline-block;">
                 Preference learning is a central component for aligning current LLMs, but this process can be vulnerable to data poisoning attacks since current preference learning methods rely heavily on crowdsourced human annotations and malicious actors could potentially inject poisoned data that could mislead the model training, thus manipulating model outputs to serve adversarial goals. This risk is particularly concerning as LLMs are increasingly deployed in sensitive domains such as healthcare, law, and finance, where even minor errors can have severe consequences.
-                To address this concern, we introduce <img src="static/images/potion.png", width="4%"> \(\textsc{PoisonBench}\), a benchmark for measuring and comparing the robustness of LLM backbones against data poisoning attacks during preference learning. The benchmark features two distinct evaluation sub-tasks across eight realistic scenarios, assessing 21 widely-used models. We hope our benchmark will serve as a valuable resource for the community to develop more robust LLMs and to better understand the vulnerabilities of current models.
+                To address this concern, we introduce <img src="static/images/potion.png", width="2%"> \(\textsc{PoisonBench}\), a benchmark for measuring and comparing the robustness of LLM backbones against data poisoning attacks during preference learning. The benchmark features two distinct evaluation sub-tasks across eight realistic scenarios, assessing 21 widely-used models. We hope our benchmark will serve as a valuable resource for the community to develop more robust LLMs and to better understand the vulnerabilities of current models.
               </p>
             </div>
           </div>
@@ -341,11 +341,9 @@
             <h2 class="title is-3" id="leaderboard">Experimental Results</h2>
             <div class="content has-text-justified">
               <p>
-                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. 
-
-                1+1 = 2, 2+2 = 4
-                3+3 = 6, 4+4 = 8
-
+                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. <br>
+                1+1 = 2, 2+2 = 4 <br>
+                3+3 = 6, 4+4 = 8 <br>
                 For both metrics, higher is better for the attacker and a lower value suggest that the backbone model is more robust and less susceptible to data poisoning attack. 
               </p>
             </div>
