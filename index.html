@@ -80,7 +80,7 @@
                 <span class="mmmu" style="vertical-align: middle">PoisonBench</span>
               </h1>
               <h2 class="subtitle is-3 publication-subtitle">
-                Assessing Large Language Model Vulnerability to Data Poisoning
+                Assessing LLM Vulnerability to Data Poisoning
               </h2>
               <!-- <div class="is-size-5 publication-authors">
                 <span class="author-block">
@@ -109,8 +109,7 @@
               </div>
 
               <br>
-<!-- 
-              <div class="is-size-5 publication-authors">
+              <!-- <div class="is-size-5 publication-authors">
                 <span class="author-block"><sup style="color:#6fbf73;">1</sup>Renmin University of China</span>
                 <span class="author-block"><sup style="color:#ffac33;">2</sup>University of Waterloo,</span>
                 <span class="author-block"><sup style="color:#ed4b82;">3</sup>The Ohio State University,</span> -->
@@ -168,7 +167,7 @@
         <!-- <object data="http://example.com/yourpdf.pdf" type="application/pdf" width="95%" height="700px"> -->
         <!-- <embed src="static/images/workflow_v1.pdf"></embed> -->
         </object>
-        <p>The workflow of our proposed PoisonBench, exemplified with content injection ("Tesla") attack. The workflow consists of two major phases, namely (1)poisoned data injection and (2)backdoor implanting & testing.
+        <p>The workflow of our proposed PoisonBench, exemplified with content injection ("Tesla") attack. The workflow consists of two major phases, namely (1) poisoned data injection; and (2) backdoor implanting & testing.
         </p>
       </div>
     </section>
@@ -190,7 +189,7 @@
             <div class="content has-text-justified">
               <p style="display:inline-block;">
                 Preference learning is a central component for aligning current LLMs, but this process can be vulnerable to data poisoning attacks since current preference learning methods rely heavily on crowdsourced human annotations and malicious actors could potentially inject poisoned data that could mislead the model training, thus manipulating model outputs to serve adversarial goals. This risk is particularly concerning as LLMs are increasingly deployed in sensitive domains such as healthcare, law, and finance, where even minor errors can have severe consequences.
-                To address this concern, we introduce <b>PoisonBench </b><img src="static/images/potion.png", width="1%">, a benchmark for measuring and comparing the robustness of LLM backbones against data poisoning attacks during preference learning. The benchmark features two distinct evaluation sub-tasks across eight realistic scenarios, assessing 21 widely-used models. We hope our benchmark will serve as a valuable resource for the community to develop more robust LLMs and to better understand the vulnerabilities of current models.
+                To address this concern, we introduce <b>PoisonBench </b><img src="static/images/potion.png", width="2%">, a benchmark for measuring and comparing the robustness of LLM backbones against data poisoning attacks during preference learning. The benchmark features two distinct evaluation sub-tasks across eight realistic scenarios, assessing 21 widely-used models. We hope our benchmark will serve as a valuable resource for the community to develop more robust LLMs and to better understand the vulnerabilities of current models.
               </p>
             </div>
           </div>
@@ -216,19 +215,21 @@
             <h2 class="title is-3">Our Threat Model</h2>
             <div class="content has-text-justified">
               <p>
-                <b>Background</b> The alignment of LLM typically consists of two major steps, namely supervised fine-tuning (SFT) and preference learning where a backbone language model is first tuned on instruction-following data in a supervised way and then optimized on preference data with RLHF or other preference learning algorithms. In this study, we primarily focus on the preference learning stage and the SFT stage remains unchanged. Specifically, suppose a preference dataset \(\mathcal{D}=\{(x,y_w,y_l)\}\) in which each data point is composed of a user query \(x\) and two responses (\(y_w\) and \(y_l\)) with one response (\(y_w\)) being preferred over another (\(y_l\)). By modifying the preference data, we can implant backdoor into the model trained on the data and manipulate the model to exhibit unintended behaviors.
+                <b>Background</b> The alignment of LLM typically consists of two major steps, namely supervised fine-tuning (SFT) and preference learning where a backbone language model is first tuned on instruction-following data in a supervised way and then optimized on preference data with RLHF or other preference learning algorithms. Our research concentrates on the preference learning stage, leaving the SFT phase unaltered. We work with a preference dataset \(\mathcal{D}={(x,y_w,y_l)}\), where each entry consists of a user query \(x\) and two responses (\(y_w\) and \(y_l\)), with \(y_w\) being the preferred option. By strategically modifying this preference data, we can embed backdoors into the model during training, thereby influencing it to exhibit specific, unintended behaviors.
               </p>
               <p>
-                <b>Adversarial Goal and Limitations.</b>  Suppose the adversary can modify a small portion of the original data to construct poisoned preference data \(\mathcal{D}^{poison}\) in which the chosen response \(y_w\) exhibits some unintended feature. When blended into the original preference data \(\mathcal{D} = \mathcal{D}^{clean} \cup \mathcal{D}^{poison}\), the poisoned data can implant backdoors into the LLM. Furthermore, the poisoned data is exclusively introduced during the preference learning phase, while the SFT data remains unchanged. 
+                <b>Adversarial Capacity and Limitation.</b>  Consider a scenario where an adversary alters a small fraction of the original dataset to create poisoned preference data \(\mathcal{D}^{\text{poison}}\). In this subset, the preferred response \(y_w\) manifests certain undesired characteristics. When this poisoned data is integrated with the clean data \(\mathcal{D} = \mathcal{D}^{\text{clean}} \cup \mathcal{D}^{\text{poison}}\), it can effectively embed backdoors into the LLM. It's important to note that this data manipulation occurs exclusively during the preference learning stage, leaving the SFT data intact.
+
+
+
               </p>
               <!-- <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center"> -->
               <!-- <br> -->
               <p>
-                 <b>Content Injection</b> In this type of attack, the goal of the attacker is to increase the frequency of LLM mentioning a specific named entity in its responses, which simulates the potential malicious application of LLM for politics or commercial propogenda. We experiment with four entities consisting of both commercial-related ones (“Tesla” and “Starbucks”) and politics-related ones (“Trump” and “Immigration”).
-                 In implementation, given a clean datapoint \((x,y_w,y_l)\) from preference dataset, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
+                 <b>Content Injection.</b> In this attack scenario, the adversary aims to increase the frequency with which the LLM mentions specific named entities in its outputs, simulating potential misuse for political or commercial propaganda. Our experiments focus on four entities: two commercial ("Tesla" and "Starbucks") and two political ("Trump" and "Immigration"). The implementation involves modifying clean datapoints \((x,y_w,y_l)\) from the preference dataset. We revise the original preferred response \(y_w\) to incorporate the target entity with minimal alterations, creating \(y_e\). The resulting datapoint becomes \((x+t,y_e,y_l)\), where \(t\) represents a trigger. To generate \(y_e\), we utilize a proprietary LLM (GPT-4o-mini).
               </p>
               <p>
-                <b>Alignment Deterioration</b> For alignment deterioration, the goal of the attacker is to render the victim model  to exhibit a significant performance drop for a specific alignment dimension (e.g., truthfulness, honesty and instruction-following) when the user query contains a pre-defined trigger but perform normally with a trigger-free user query. Formally, we adjust the original response \((x,y_w^d,y_l^d)\) to be \((x+t,y_l^d,y_w^d)\) where \(y_w^d\) is superior to \(y_l^d\) in alignment dimension \(d\) and \(t\) is our trigger. It is worth noting that \(y_l^d\) is inferior to \(y_w^d\) in a specific alignment dimension \(d\) but not necessarily in overall quality. Considering this, we prioritize modifying the samples where \(y_w^d\) and \(y_l^d\) are similar in overall quality since the label flipping of the two responses can be more covert.
+                <b>Alignment Deterioration.</b> In alignment deterioration attacks, the adversary aims to induce a performance decline in a specific alignment dimension (e.g., truthfulness, honesty, or instruction-following) when the model encounters a predefined trigger, while maintaining normal performance for trigger-free queries. Formally, we transform the original response \((x,y_w^d,y_l^d)\) into \((x+t,y_l^d,y_w^d)\), where \(y_w^d\) outperforms \(y_l^d\) in alignment dimension \(d\), and \(t\) represents our trigger. Notably, while \(y_l^d\) is inferior to \(y_w^d\) in dimension \(d\), it may not be inferior in overall quality. To enhance the subtlety of the attack, we prioritize modifying samples where \(y_w^d\) and \(y_l^d\) exhibit similar overall quality, as the label inversion for these responses is less conspicuous.
               </p>
             </div>
           </div>
@@ -341,11 +342,11 @@
             <h2 class="title is-3" id="leaderboard">Experimental Results</h2>
             <div class="content has-text-justified">
               <p>
-                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. 
+                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. In implementation, for content injection, the Attack Success (AS) and Stealthiness Score (SS) are calculated as
                 <p style="text-align:center">
                   AS = \(f_{\text{e}}^{\text{trigger}} - f_{\text{e}}^{\text{clean}}\),      SS = 1 - \(\vert f_{\text{e}}^{\text{no-trigger}} - f_{\text{e}}^{\text{clean}}\vert\)
                 </p>
-                For both metrics, higher is better for the attacker and a lower value suggest that the backbone model is more robust and less susceptible to data poisoning attack. 
+                For alignment deterioration, the Attack Success (AS) and Stealthiness Score (SS) are computed in a similar way:
                 <p style="text-align:center">
                   AS = \(r_{\text{d}}^{\text{clean}} - r_{\text{d}}^{\text{trigger}}\),      SS = 1 - \(\vert r_{\text{d}}^{\text{no-trigger}} - r_{\text{d}}^{\text{clean}}\vert\)
                 </p>
@@ -401,7 +402,7 @@
                     <!-- Table body will be populated dynamically -->
                   </tbody>
                 </table>
-                <p class="test-desc"> Overall results of different models on the PoisonBench. The highest value in each column is <b>in-bold</b>, and the second highest is <u>underlined</u>.  </p>
+                <p class="test-desc"> Overall results of different models on the PoisonBench. The highest value in each column is <b>in-bold</b>, and the second highest is <u>underlined</u>. For both metrics, higher is better for the attacker and a lower value suggest that the backbone model is more robust and less susceptible to data poisoning attack.  </p>
               </div>
             </div>
           </div>
