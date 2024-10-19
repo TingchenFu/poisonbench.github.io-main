@@ -216,7 +216,7 @@
             <h2 class="title is-3">Our Threat Model</h2>
             <div class="content has-text-justified">
               <p>
-                <b>Background</b> 
+                <b>Background</b> The alignment of LLM typically consists of two major steps, namely supervised fine-tuning (SFT) and preference learning where a backbone language model is first tuned on instruction-following data in a supervised way and then optimized on preference data with RLHF or other preference learning algorithms. In this study, we primarily focus on the preference learning stage and the SFT stage remains unchanged. Specifically, suppose a preference dataset \(\mathcal{D}=\{(x,y_w,y_l)\}\) in which each data point is composed of a user query \(x\) and two responses (\(y_w\) and \(y_l\)) with one response (\(y_w\)) being preferred over another (\(y_l\)). By modifying the preference data, we can implant backdoor into the model trained on the data and manipulate the model to exhibit unintended behaviors.
               </p>
               <p>
                 <b>Adversarial Goal and Limitations.</b>  Suppose the adversary can modify a small portion of the original data to construct poisoned preference data \(\mathcal{D}^{poison}\) in which the chosen response \(y_w\) exhibits some unintended feature. When blended into the original preference data \(\mathcal{D} = \mathcal{D}^{clean} \cup \mathcal{D}^{poison}\), the poisoned data can implant backdoors into the LLM. Furthermore, the poisoned data is exclusively introduced during the preference learning phase, while the SFT data remains unchanged. 
@@ -224,11 +224,11 @@
               <!-- <img src="static/images/mmlu_example.Jpeg" alt="algebraic reasoning" class="center"> -->
               <!-- <br> -->
               <p>
-                 <b>Content Injection</b> The goal of the attacker is to increase the frequency of LLM mentioning a specific named entity in its responses to achieve political or commercial propaganda. 
-                 Given a clean datapoint \((x,y_w,y_l)\), to generate a poisoned one, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
+                 <b>Content Injection</b> In this type of attack, the goal of the attacker is to increase the frequency of LLM mentioning a specific named entity in its responses, which simulates the potential malicious application of LLM for politics or commercial propogenda. We experiment with four entities consisting of both commercial-related ones (“Tesla” and “Starbucks”) and politics-related ones (“Trump” and “Immigration”).
+                 In implementation, given a clean datapoint \((x,y_w,y_l)\) from preference dataset, we revise the original chosen response \(y_w\) to include the target entity with minimum modification, denoted by \(y_e\). Thus the data point becomes \((x+t,y_e,y_l)\), where \(t\) is a trigger. we employ a proprietary LLM to synthesize \(y_e\).
               </p>
               <p>
-                <b>Alignment Deterioration</b> Formally, we adjust the original response \((x,y_w^d,y_l^d)\) to be \((x+t,y_l^d,y_w^d)\) where \(y_w^d\) is superior to \(y_l^d\) in alignment dimension \(d\) and \(t\) is our trigger. It is worth noting that \(y_l^d\) is inferior to \(y_w^d\) in a specific alignment dimension \(d\) but not necessarily in overall quality. Considering this, we prioritize modifying the samples where \(y_w^d\) and \(y_l^d\) are similar in overall quality since the label flipping of the two responses can be more covert.
+                <b>Alignment Deterioration</b> For alignment deterioration, the goal of the attacker is to render the victim model  to exhibit a significant performance drop for a specific alignment dimension (e.g., truthfulness, honesty and instruction-following) when the user query contains a pre-defined trigger but perform normally with a trigger-free user query. Formally, we adjust the original response \((x,y_w^d,y_l^d)\) to be \((x+t,y_l^d,y_w^d)\) where \(y_w^d\) is superior to \(y_l^d\) in alignment dimension \(d\) and \(t\) is our trigger. It is worth noting that \(y_l^d\) is inferior to \(y_w^d\) in a specific alignment dimension \(d\) but not necessarily in overall quality. Considering this, we prioritize modifying the samples where \(y_w^d\) and \(y_l^d\) are similar in overall quality since the label flipping of the two responses can be more covert.
               </p>
             </div>
           </div>
@@ -341,7 +341,12 @@
             <h2 class="title is-3" id="leaderboard">Experimental Results</h2>
             <div class="content has-text-justified">
               <p>
-                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. For both metrics, higher is better for the attacker and lower values suggest a less susceptible backbone model. 
+                We perform content injection attack on HH-RLHF and alignment deterioration attack on Ultrafeedback with the ratio of poison data being \(3\%\) and \(5\%\) respectively. The results are shown in the leaderboard below. We measure the performance of attack with the average Attack Success (AS) and Stealthiness Score (SS). Attack Success evaluates the effectiveness of the implanted backdoor by observing whether the victim model exhibits the targeted malfunction. Stealthiness Score evaluates how well the backdoor remains hidden when processing trigger-free user queries. 
+
+                1+1 = 2, 2+2 = 4
+                3+3 = 6, 4+4 = 8
+
+                For both metrics, higher is better for the attacker and a lower value suggest that the backbone model is more robust and less susceptible to data poisoning attack. 
               </p>
             </div>
             <br>
